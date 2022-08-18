@@ -1,5 +1,6 @@
 const startButton = document.getElementById('start-btn')
 const nextButton = document.getElementById('next-btn')
+const endButton = document.getElementById('end-btn')
 const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
@@ -20,6 +21,7 @@ const countDown = setInterval (() => {
 
 let shuffledQuestions, currentQuestionIndex
 
+// Start and Next button funtionality
 startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', () => {
     currentQuestionIndex++
@@ -35,11 +37,13 @@ function startGame() {
     setNextQuestion() 
 }
 
+// displays next question after answering
 function setNextQuestion() {
     resetState()
     showQuestion(shuffledQuestions[currentQuestionIndex])
 }
 
+// displays questions and answer selections
 function showQuestion(question){
     questionElement.innerText = question.question
     question.answer.forEach(answer => {
@@ -54,6 +58,7 @@ function showQuestion(question){
     })
 }
 
+// Answer button and selection funtionality 
 function resetState(){
     clearStatusClass(document.body)
     nextButton.classList.add('hide')
@@ -62,6 +67,7 @@ function resetState(){
     }
 }
 
+// Next and End Button functionality
 function selectAnswer(e) {
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
@@ -72,11 +78,12 @@ function selectAnswer(e) {
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
     nextButton.classList.remove('hide')
 } else {
-    startButton.innerText = 'Restart'
-    startButton.classList.remove('hide')
+    endButton.innerText = 'End'
+    endButton.classList.remove('hide')
 }
 }
 
+// Adds correct or wrong color to the answer response
 function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
@@ -86,11 +93,12 @@ function setStatusClass(element, correct) {
     }
 }
 
+// Clears answer color for the next question
 function clearStatusClass(element) {
     element.classList.remove('correct')
     element.classList.remove('wrong')
 }
-
+// added questions
 const questions = [
     {
         question: "True and False is what?",
