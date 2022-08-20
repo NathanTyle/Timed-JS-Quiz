@@ -4,7 +4,7 @@
 
 -JavaScript based quiz
 -the quiz is also timed
--as well as has a gameover 
+-as well as has a gameover screen 
 -the gameover screen has a continue button that restarts the quiz
 
 
